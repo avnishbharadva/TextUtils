@@ -3,8 +3,19 @@ import React,{useState} from 'react';
 export default function TextCmp() {
     const [text , settext] = useState("Enter Text");
 
-    handleonChange = () => {
+    const handleUpCase = ()=>{
+        let newtext = text.toUpperCase();
+        settext(newtext);
+    }
+
+    const handleLowCase = ()=>{
+        let newtext = text.toLowerCase();
+        settext(newtext);
+    }
+
+    const handleonChange = (event)=>{
         console.log("onchange handled");
+        settext(event.target.value);
     }
 
     return (
@@ -18,8 +29,14 @@ export default function TextCmp() {
                 <textarea className="form-control" value={text} onChange={handleonChange} placeholder="Leave a comment here" id="usertext" rows="8"></textarea>
                 {/* <label for="floatingTextarea">Comments</label> */}
             </div>
-            <button className='btn btn-primary'>Convert To UpperCase</button>
-            <button className='btn btn-primary mx-2'>Convert To LowerCase</button>
+            <button className='btn btn-primary' onClick={handleUpCase}>Convert To UpperCase</button>
+            <button className='btn btn-primary mx-2' onClick={handleLowCase}>Convert To LowerCase</button>
+        </div>
+        <div className='container my-3'>
+            <p>Words {text.split(" ").length} Characters {text.length}</p>
+            <p>Reading Time {0.08 * text.split(" ").length}</p>
+            <h4>Preview</h4>
+            <p>{text}</p>
         </div>
         </>
     )
