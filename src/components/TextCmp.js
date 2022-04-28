@@ -24,9 +24,9 @@ export default function TextCmp(props) {
     }
 
     const handleCopyText = ()=>{
-        let utext = document.getElementById('usertext');
-        utext.select();
-        navigator.clipboard.writeText(utext.value);
+        // let utext = document.getElementById('usertext');
+        // utext.select();
+        navigator.clipboard.writeText(text);
     }
 
     const handleRemoveExtraSpace = () => {
@@ -51,7 +51,7 @@ export default function TextCmp(props) {
         </div>
         <div className='container my-3' style={props.mode==="light"?{color:'black'}:{color:"white"}}>
             <h2>Text Summary</h2>
-            <p>Words {text.split(" ").filter((element)=>{return element.length!==0}).length} Characters {text.length}</p>
+            <p>Words {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} Characters {text.length}</p>
             <p>Reading Time {0.08 * text.split(" ").filter((element)=>{return element.length!==0}).length}</p>
             <h3>Preview</h3>
             <p>{text.length>0?text:"Nothing to show here !!"}</p>
